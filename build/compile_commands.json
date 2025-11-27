@@ -1,20 +1,20 @@
 [
 {
-  "directory": "/home/prasanna/Ensc351/work/ECG-Project/build/hal",
-  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/hal.dir/src/adc.c.o -c /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c",
-  "file": "/home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c",
+  "directory": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal",
+  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/hal.dir/src/adc.c.o -c /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c",
+  "file": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c",
   "output": "hal/CMakeFiles/hal.dir/src/adc.c.o"
 },
 {
-  "directory": "/home/prasanna/Ensc351/work/ECG-Project/build/hal",
-  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/hal.dir/src/udp.c.o -c /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c",
-  "file": "/home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c",
+  "directory": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal",
+  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/hal.dir/src/udp.c.o -c /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c",
+  "file": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c",
   "output": "hal/CMakeFiles/hal.dir/src/udp.c.o"
 },
 {
-  "directory": "/home/prasanna/Ensc351/work/ECG-Project/build/app",
-  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/app/include -I/home/prasanna/Ensc351/work/ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/ecg.dir/src/main.c.o -c /home/prasanna/Ensc351/work/ECG-Project/app/src/main.c",
-  "file": "/home/prasanna/Ensc351/work/ECG-Project/app/src/main.c",
+  "directory": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/app",
+  "command": "/usr/bin/aarch64-linux-gnu-gcc  -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/include -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer -o CMakeFiles/ecg.dir/src/main.c.o -c /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/src/main.c",
+  "file": "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/src/main.c",
   "output": "app/CMakeFiles/ecg.dir/src/main.c.o"
 }
 ]

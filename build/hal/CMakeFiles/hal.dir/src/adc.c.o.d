@@ -1,5 +1,5 @@
 hal/CMakeFiles/hal.dir/src/adc.c.o: \
- /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c \
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
  /usr/aarch64-linux-gnu/include/stdio.h \
  /usr/aarch64-linux-gnu/include/bits/libc-header-start.h \
@@ -112,5 +112,5 @@ hal/CMakeFiles/hal.dir/src/adc.c.o: \
  /usr/aarch64-linux-gnu/include/bits/types/struct___jmp_buf_tag.h \
  /usr/aarch64-linux-gnu/include/bits/pthread_stack_min-dynamic.h \
  /usr/aarch64-linux-gnu/include/bits/pthread_stack_min.h \
- /home/prasanna/Ensc351/work/ECG-Project/hal/include/adc.h \
- /home/prasanna/Ensc351/work/ECG-Project/hal/include/udp.h
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include/adc.h \
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include/udp.h

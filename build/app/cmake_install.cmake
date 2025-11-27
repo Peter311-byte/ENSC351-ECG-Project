@@ -1,4 +1,4 @@
-# Install script for directory: /home/prasanna/Ensc351/work/ECG-Project/app
+# Install script for directory: /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,6 +45,6 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/build/app/install_local_manifest.txt"
+  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/app/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

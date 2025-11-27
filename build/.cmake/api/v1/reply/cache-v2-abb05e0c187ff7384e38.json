@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/prasanna/Ensc351/work/ECG-Project/build"
+			"value" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -415,7 +415,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -487,7 +487,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/prasanna/Ensc351/work/ECG-Project"
+			"value" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1099,7 +1099,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/prasanna/Ensc351/work/ECG-Project/build"
+			"value" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build"
 		},
 		{
 			"name" : "ECG-Project_IS_TOP_LEVEL",
@@ -1123,7 +1123,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/prasanna/Ensc351/work/ECG-Project"
+			"value" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",

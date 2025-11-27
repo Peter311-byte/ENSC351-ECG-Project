@@ -506,8 +506,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/prasanna/Ensc351/work/ECG-Project/build",
-		"source" : "/home/prasanna/Ensc351/work/ECG-Project"
+		"build" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build",
+		"source" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project"
 	},
 	"version" : 
 	{

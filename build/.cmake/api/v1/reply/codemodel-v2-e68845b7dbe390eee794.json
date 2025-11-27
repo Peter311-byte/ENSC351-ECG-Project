@@ -73,14 +73,14 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "ecg::@5f5a17c01335469806cb",
-					"jsonFile" : "target-ecg-Debug-c86659e25ce077778487.json",
+					"jsonFile" : "target-ecg-Debug-6fc632899606aa379b6d.json",
 					"name" : "ecg",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "hal::@ad971efe0e95b39e260f",
-					"jsonFile" : "target-hal-Debug-dce4003c07c586578d28.json",
+					"jsonFile" : "target-hal-Debug-1fb52ad7bcb104bdcc0c.json",
 					"name" : "hal",
 					"projectIndex" : 0
 				}
@@ -90,8 +90,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/prasanna/Ensc351/work/ECG-Project/build",
-		"source" : "/home/prasanna/Ensc351/work/ECG-Project"
+		"build" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build",
+		"source" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project"
 	},
 	"version" : 
 	{

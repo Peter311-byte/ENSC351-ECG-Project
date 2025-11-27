@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c" "hal/CMakeFiles/hal.dir/src/adc.c.o" "gcc" "hal/CMakeFiles/hal.dir/src/adc.c.o.d"
-  "/home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c" "hal/CMakeFiles/hal.dir/src/udp.c.o" "gcc" "hal/CMakeFiles/hal.dir/src/udp.c.o.d"
+  "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c" "hal/CMakeFiles/hal.dir/src/adc.c.o" "gcc" "hal/CMakeFiles/hal.dir/src/adc.c.o.d"
+  "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c" "hal/CMakeFiles/hal.dir/src/udp.c.o" "gcc" "hal/CMakeFiles/hal.dir/src/udp.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

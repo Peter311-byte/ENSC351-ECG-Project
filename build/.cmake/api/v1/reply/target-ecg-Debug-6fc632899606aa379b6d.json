@@ -83,11 +83,11 @@
 			[
 				{
 					"backtrace" : 5,
-					"path" : "/home/prasanna/Ensc351/work/ECG-Project/app/include"
+					"path" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/include"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/prasanna/Ensc351/work/ECG-Project/hal/include"
+					"path" : "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include"
 				}
 			],
 			"language" : "C",

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project
+CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/build
+CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -127,14 +127,14 @@ hal/clean: hal/CMakeFiles/hal.dir/clean
 hal/CMakeFiles/hal.dir/all:
 	$(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/depend
 	$(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=3,4,5 "Built target hal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=3,4,5 "Built target hal"
 .PHONY : hal/CMakeFiles/hal.dir/all
 
 # Build rule for subdir invocation for target.
 hal/CMakeFiles/hal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/CMakeFiles/hal.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles 0
 .PHONY : hal/CMakeFiles/hal.dir/rule
 
 # Convenience name for target.
@@ -144,7 +144,7 @@ hal: hal/CMakeFiles/hal.dir/rule
 # codegen rule for target.
 hal/CMakeFiles/hal.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=3,4,5 "Finished codegen for target hal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=3,4,5 "Finished codegen for target hal"
 .PHONY : hal/CMakeFiles/hal.dir/codegen
 
 # clean rule for target.
@@ -159,14 +159,14 @@ hal/CMakeFiles/hal.dir/clean:
 app/CMakeFiles/ecg.dir/all: hal/CMakeFiles/hal.dir/all
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/ecg.dir/build.make app/CMakeFiles/ecg.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/ecg.dir/build.make app/CMakeFiles/ecg.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=1,2 "Built target ecg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=1,2 "Built target ecg"
 .PHONY : app/CMakeFiles/ecg.dir/all
 
 # Build rule for subdir invocation for target.
 app/CMakeFiles/ecg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/CMakeFiles/ecg.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles 0
 .PHONY : app/CMakeFiles/ecg.dir/rule
 
 # Convenience name for target.
@@ -176,7 +176,7 @@ ecg: app/CMakeFiles/ecg.dir/rule
 # codegen rule for target.
 app/CMakeFiles/ecg.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/ecg.dir/build.make app/CMakeFiles/ecg.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=1,2 "Finished codegen for target ecg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=1,2 "Finished codegen for target ecg"
 .PHONY : app/CMakeFiles/ecg.dir/codegen
 
 # clean rule for target.

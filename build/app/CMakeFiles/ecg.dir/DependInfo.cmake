@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/prasanna/Ensc351/work/ECG-Project/app/src/main.c" "app/CMakeFiles/ecg.dir/src/main.c.o" "gcc" "app/CMakeFiles/ecg.dir/src/main.c.o.d"
+  "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/src/main.c" "app/CMakeFiles/ecg.dir/src/main.c.o" "gcc" "app/CMakeFiles/ecg.dir/src/main.c.o.d"
   "" "app/ecg" "gcc" "app/CMakeFiles/ecg.dir/link.d"
   )
 

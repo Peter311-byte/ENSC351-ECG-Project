@@ -4,7 +4,7 @@
 # compile C with /usr/bin/aarch64-linux-gnu-gcc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/prasanna/Ensc351/work/ECG-Project/app/include -I/home/prasanna/Ensc351/work/ECG-Project/hal/include
+C_INCLUDES = -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/app/include -I/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include
 
 C_FLAGS = -g -std=gnu11 -O0 -g3 -ggdb -fno-omit-frame-pointer
 

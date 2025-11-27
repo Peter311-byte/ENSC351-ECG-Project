@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project
+CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/build
+CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build
 
 # Include any dependencies generated for this target.
 include hal/CMakeFiles/hal.dir/depend.make
@@ -73,32 +73,32 @@ hal/CMakeFiles/hal.dir/codegen:
 .PHONY : hal/CMakeFiles/hal.dir/codegen
 
 hal/CMakeFiles/hal.dir/src/adc.c.o: hal/CMakeFiles/hal.dir/flags.make
-hal/CMakeFiles/hal.dir/src/adc.c.o: /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c
+hal/CMakeFiles/hal.dir/src/adc.c.o: /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c
 hal/CMakeFiles/hal.dir/src/adc.c.o: hal/CMakeFiles/hal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object hal/CMakeFiles/hal.dir/src/adc.c.o"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT hal/CMakeFiles/hal.dir/src/adc.c.o -MF CMakeFiles/hal.dir/src/adc.c.o.d -o CMakeFiles/hal.dir/src/adc.c.o -c /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object hal/CMakeFiles/hal.dir/src/adc.c.o"
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT hal/CMakeFiles/hal.dir/src/adc.c.o -MF CMakeFiles/hal.dir/src/adc.c.o.d -o CMakeFiles/hal.dir/src/adc.c.o -c /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c
 
 hal/CMakeFiles/hal.dir/src/adc.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/hal.dir/src/adc.c.i"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c > CMakeFiles/hal.dir/src/adc.c.i
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c > CMakeFiles/hal.dir/src/adc.c.i
 
 hal/CMakeFiles/hal.dir/src/adc.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/hal.dir/src/adc.c.s"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/prasanna/Ensc351/work/ECG-Project/hal/src/adc.c -o CMakeFiles/hal.dir/src/adc.c.s
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/adc.c -o CMakeFiles/hal.dir/src/adc.c.s
 
 hal/CMakeFiles/hal.dir/src/udp.c.o: hal/CMakeFiles/hal.dir/flags.make
-hal/CMakeFiles/hal.dir/src/udp.c.o: /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c
+hal/CMakeFiles/hal.dir/src/udp.c.o: /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c
 hal/CMakeFiles/hal.dir/src/udp.c.o: hal/CMakeFiles/hal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object hal/CMakeFiles/hal.dir/src/udp.c.o"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT hal/CMakeFiles/hal.dir/src/udp.c.o -MF CMakeFiles/hal.dir/src/udp.c.o.d -o CMakeFiles/hal.dir/src/udp.c.o -c /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object hal/CMakeFiles/hal.dir/src/udp.c.o"
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT hal/CMakeFiles/hal.dir/src/udp.c.o -MF CMakeFiles/hal.dir/src/udp.c.o.d -o CMakeFiles/hal.dir/src/udp.c.o -c /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c
 
 hal/CMakeFiles/hal.dir/src/udp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/hal.dir/src/udp.c.i"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c > CMakeFiles/hal.dir/src/udp.c.i
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c > CMakeFiles/hal.dir/src/udp.c.i
 
 hal/CMakeFiles/hal.dir/src/udp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/hal.dir/src/udp.c.s"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c -o CMakeFiles/hal.dir/src/udp.c.s
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && /usr/bin/aarch64-linux-gnu-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c -o CMakeFiles/hal.dir/src/udp.c.s
 
 # Object files for target hal
 hal_OBJECTS = \
@@ -112,19 +112,19 @@ hal/libhal.a: hal/CMakeFiles/hal.dir/src/adc.c.o
 hal/libhal.a: hal/CMakeFiles/hal.dir/src/udp.c.o
 hal/libhal.a: hal/CMakeFiles/hal.dir/build.make
 hal/libhal.a: hal/CMakeFiles/hal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libhal.a"
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && $(CMAKE_COMMAND) -P CMakeFiles/hal.dir/cmake_clean_target.cmake
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hal.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libhal.a"
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && $(CMAKE_COMMAND) -P CMakeFiles/hal.dir/cmake_clean_target.cmake
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/hal.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 hal/CMakeFiles/hal.dir/build: hal/libhal.a
 .PHONY : hal/CMakeFiles/hal.dir/build
 
 hal/CMakeFiles/hal.dir/clean:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build/hal && $(CMAKE_COMMAND) -P CMakeFiles/hal.dir/cmake_clean.cmake
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal && $(CMAKE_COMMAND) -P CMakeFiles/hal.dir/cmake_clean.cmake
 .PHONY : hal/CMakeFiles/hal.dir/clean
 
 hal/CMakeFiles/hal.dir/depend:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/prasanna/Ensc351/work/ECG-Project /home/prasanna/Ensc351/work/ECG-Project/hal /home/prasanna/Ensc351/work/ECG-Project/build /home/prasanna/Ensc351/work/ECG-Project/build/hal /home/prasanna/Ensc351/work/ECG-Project/build/hal/CMakeFiles/hal.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal/CMakeFiles/hal.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : hal/CMakeFiles/hal.dir/depend
 

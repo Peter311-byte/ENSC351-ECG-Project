@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project
+CMAKE_SOURCE_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/build
+CMAKE_BINARY_DIR = /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles /home/prasanna/Ensc351/work/ECG-Project/build/hal//CMakeFiles/progress.marks
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles 0
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal//CMakeFiles/progress.marks
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/clean
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/preinstall
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/preinstall
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 hal/CMakeFiles/hal.dir/rule:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/CMakeFiles/hal.dir/rule
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hal/CMakeFiles/hal.dir/rule
 .PHONY : hal/CMakeFiles/hal.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ hal: hal/CMakeFiles/hal.dir/rule
 
 # fast build rule for target.
 hal/fast:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/build
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/build
 .PHONY : hal/fast
 
 src/adc.o: src/adc.c.o
@@ -135,7 +135,7 @@ src/adc.o: src/adc.c.o
 
 # target to build an object file
 src/adc.c.o:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.o
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.o
 .PHONY : src/adc.c.o
 
 src/adc.i: src/adc.c.i
@@ -143,7 +143,7 @@ src/adc.i: src/adc.c.i
 
 # target to preprocess a source file
 src/adc.c.i:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.i
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.i
 .PHONY : src/adc.c.i
 
 src/adc.s: src/adc.c.s
@@ -151,7 +151,7 @@ src/adc.s: src/adc.c.s
 
 # target to generate assembly for a file
 src/adc.c.s:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.s
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/adc.c.s
 .PHONY : src/adc.c.s
 
 src/udp.o: src/udp.c.o
@@ -159,7 +159,7 @@ src/udp.o: src/udp.c.o
 
 # target to build an object file
 src/udp.c.o:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.o
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.o
 .PHONY : src/udp.c.o
 
 src/udp.i: src/udp.c.i
@@ -167,7 +167,7 @@ src/udp.i: src/udp.c.i
 
 # target to preprocess a source file
 src/udp.c.i:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.i
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.i
 .PHONY : src/udp.c.i
 
 src/udp.s: src/udp.c.s
@@ -175,7 +175,7 @@ src/udp.s: src/udp.c.s
 
 # target to generate assembly for a file
 src/udp.c.s:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.s
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(MAKE) $(MAKESILENT) -f hal/CMakeFiles/hal.dir/build.make hal/CMakeFiles/hal.dir/src/udp.c.s
 .PHONY : src/udp.c.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/prasanna/Ensc351/work/ECG-Project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

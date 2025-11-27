@@ -1,5 +1,5 @@
 hal/CMakeFiles/hal.dir/src/udp.c.o: \
- /home/prasanna/Ensc351/work/ECG-Project/hal/src/udp.c \
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/src/udp.c \
  /usr/aarch64-linux-gnu/include/stdc-predef.h \
  /usr/aarch64-linux-gnu/include/stdio.h \
  /usr/aarch64-linux-gnu/include/bits/libc-header-start.h \
@@ -100,5 +100,5 @@ hal/CMakeFiles/hal.dir/src/udp.c.o: \
  /usr/aarch64-linux-gnu/include/bits/pthread_stack_min.h \
  /usr/aarch64-linux-gnu/include/string.h \
  /usr/aarch64-linux-gnu/include/strings.h \
- /home/prasanna/Ensc351/work/ECG-Project/hal/include/udp.h \
- /home/prasanna/Ensc351/work/ECG-Project/hal/include/adc.h
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include/udp.h \
+ /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/hal/include/adc.h

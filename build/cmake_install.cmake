@@ -1,4 +1,4 @@
-# Install script for directory: /home/prasanna/Ensc351/work/ECG-Project
+# Install script for directory: /home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,18 +44,18 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/prasanna/Ensc351/work/ECG-Project/build/hal/cmake_install.cmake")
+  include("/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/hal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/prasanna/Ensc351/work/ECG-Project/build/app/cmake_install.cmake")
+  include("/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/app/cmake_install.cmake")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/build/install_local_manifest.txt"
+  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -71,6 +71,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/prasanna/Ensc351/work/ECG-Project/ENSC351-ECG-Project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
