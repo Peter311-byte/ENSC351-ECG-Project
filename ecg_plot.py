@@ -17,16 +17,18 @@ BEAGLE_IP = "192.168.7.2"
 # -------- Filter params -------------------------------------
 # Band-pass for ECG
 HP_CUTOFF = 0.5        # high-pass cutoff (Hz)
-LP_CUTOFF = 25.0       # low-pass cutoff (Hz)  (tighter to reduce EMG)
+LP_CUTOFF = 25.0       # low-pass cutoff (Hz)
 BP_ORDER  = 4
 
 # 60 Hz notch
 NOTCH_F0  = 60.0       # notch frequency (Hz)
-NOTCH_Q   = 35.0       # quality factor (higher = narrower notch)
+NOTCH_Q   = 35.0       # quality factor
 
-# Savitzky–Golay smoothing
-SAVGOL_WINDOW = 11     # must be odd; 11 samples ≈ 22 ms at 500 Hz
+# Smoothing + "certain point" thresholds
+SAVGOL_WINDOW = 21     # must be odd; ~42 ms at 500 Hz
 SAVGOL_ORDER  = 3
+JUMP_THRESH   = 150.0  # mV, max allowed change between samples
+AMP_THRESH    = 350.0  # mV, max deviation from median to keep
 
 # ============================================================
 #                  1. SET UP UDP SOCKET
@@ -43,7 +45,7 @@ sock.sendto(b"send\n", (BEAGLE_IP, UDP_PORT))
 
 buffer = np.zeros(N, dtype=float)
 
-print(">>> Running ECG plot script with band-pass + 60 Hz notch + smoothing")
+print(">>> Running ECG plot script with filters + certainty masking (tuned)")
 
 # ============================================================
 #                  2a. DESIGN FILTERS
@@ -70,11 +72,15 @@ win.resize(800, 400)
 win.show()
 
 plot = win.addPlot()
-plot.setLabel('left', 'Voltage', 'V')
+plot.setLabel('left', 'Voltage', 'mV')
 plot.setLabel('bottom', 'Time', 's')
 
-curve = plot.plot(pen=pg.mkPen(color='g', width=2))
-
+curve = plot.plot(
+    pen=None,          # no connecting line
+    symbol='o',        # point marker
+    symbolSize=4,
+    symbolBrush='g'
+)
 
 t = np.linspace(-WINDOW_SEC, 0, N)
 
@@ -106,35 +112,51 @@ def update():
         pass
 
     # --------------------------------------------------------
-    # DIGITAL FILTERING
+    # DIGITAL FILTERING + CERTAINTY MASK
     # --------------------------------------------------------
-    # 1) remove DC offset
-    x = buffer - np.mean(buffer)
+    x = buffer - np.mean(buffer)  # remove DC
 
-    if np.any(x):  # avoid filtering all zeros at startup
-        # 2) band-pass 0.5–25 Hz
+    if np.any(x):
+        # 1) band-pass 0.5–25 Hz
         x_filt = filtfilt(b_bp, a_bp, x)
 
-        # 3) 60 Hz notch
+        # 2) 60 Hz notch
         x_filt = filtfilt(b_notch, a_notch, x_filt)
 
-        # 4) light smoothing
-        # ensure window length is not larger than the signal
+        # 3) smoothing (Savitzky–Golay)
         win_len = min(SAVGOL_WINDOW, len(x_filt) - (1 - len(x_filt) % 2))
-        if win_len < 3:   # fallback if buffer is too short
+        if win_len < 3:
             x_smooth = x_filt
         else:
             if win_len % 2 == 0:
                 win_len -= 1
-            x_smooth = savgol_filter(x_filt, window_length=win_len,
-                                     polyorder=min(SAVGOL_ORDER, win_len - 1))
+            x_smooth = savgol_filter(
+                x_filt,
+                window_length=win_len,
+                polyorder=min(SAVGOL_ORDER, win_len - 1)
+            )
+
+        # 4) "certain point" mask
+        # 4a) reject big jumps between consecutive samples
+        diff = np.abs(np.diff(x_smooth))
+        jump_mask = np.concatenate(([True], diff < JUMP_THRESH))
+
+        # 4b) reject amplitude outliers vs median
+        med = np.median(x_smooth)
+        amp_mask = np.abs(x_smooth - med) < AMP_THRESH
+
+        mask = jump_mask & amp_mask
+
+        t_clean = t[mask]
+        y_clean = x_smooth[mask]
     else:
-        x_smooth = x
+        t_clean = t
+        y_clean = x
 
     # --------------------------------------------------------
-    # Update plot with FILTERED data
+    # Update plot with CLEAN points only
     # --------------------------------------------------------
-    curve.setData(t, x_smooth)
+    curve.setData(t_clean, y_clean)
 
 # ============================================================
 #           5. SET UP QT TIMER TO CALL update()
@@ -142,7 +164,7 @@ def update():
 
 timer = QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(1000)          # update every 10 ms
+timer.start(10)          # update every 10 ms
 
 # ============================================================
 #           6. START APPLICATION EVENT LOOP
