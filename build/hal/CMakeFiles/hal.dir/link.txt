@@ -1,0 +1,2 @@
+/usr/bin/aarch64-linux-gnu-ar qc libhal.a CMakeFiles/hal.dir/src/adc.c.o CMakeFiles/hal.dir/src/udp.c.o
+/usr/bin/aarch64-linux-gnu-ranlib libhal.a

@@ -1,0 +1,8 @@
+/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles/edit_cache.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/CMakeFiles/rebuild_cache.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/hal/CMakeFiles/hal.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/hal/CMakeFiles/edit_cache.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/hal/CMakeFiles/rebuild_cache.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/app/CMakeFiles/ecg.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/app/CMakeFiles/edit_cache.dir
+/home/prasanna/Ensc351/work/ECG-Project/build/app/CMakeFiles/rebuild_cache.dir
