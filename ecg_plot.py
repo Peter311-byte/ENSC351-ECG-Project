@@ -3,6 +3,8 @@ import numpy as np
 import pyqtgraph as pg
 from PyQt5 import QtWidgets, QtCore
 from scipy.signal import butter, filtfilt, iirnotch, savgol_filter
+import csv
+import time
 
 # ============================================================
 #               USER PARAMETERS
@@ -17,16 +19,24 @@ BEAGLE_IP = "192.168.7.2"
 # -------- Filter params -------------------------------------
 # Band-pass for ECG
 HP_CUTOFF = 0.5        # high-pass cutoff (Hz)
-LP_CUTOFF = 25.0       # low-pass cutoff (Hz)  (tighter to reduce EMG)
+LP_CUTOFF = 25.0       # low-pass cutoff (Hz)
 BP_ORDER  = 4
 
 # 60 Hz notch
 NOTCH_F0  = 60.0       # notch frequency (Hz)
-NOTCH_Q   = 35.0       # quality factor (higher = narrower notch)
+NOTCH_Q   = 35.0       # quality factor
 
 # Savitzky–Golay smoothing
-SAVGOL_WINDOW = 11     # must be odd; 11 samples ≈ 22 ms at 500 Hz
+SAVGOL_WINDOW = 11     # must be odd
 SAVGOL_ORDER  = 3
+
+# ============================================================
+#                  SET UP CSV LOGGING
+# ============================================================
+
+csv_file = open("ecg_recording.csv", "w", newline="")
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(["timestamp_sec", "voltage_V"])
 
 # ============================================================
 #                  1. SET UP UDP SOCKET
@@ -44,6 +54,7 @@ sock.sendto(b"send\n", (BEAGLE_IP, UDP_PORT))
 buffer = np.zeros(N, dtype=float)
 
 print(">>> Running ECG plot script with band-pass + 60 Hz notch + smoothing")
+print(">>> Recording data to ecg_recording.csv")
 
 # ============================================================
 #                  2a. DESIGN FILTERS
@@ -56,7 +67,7 @@ low = HP_CUTOFF / nyq
 high = LP_CUTOFF / nyq
 b_bp, a_bp = butter(BP_ORDER, [low, high], btype='bandpass')
 
-# 60 Hz notch (IIR)
+# 60 Hz notch
 b_notch, a_notch = iirnotch(NOTCH_F0 / nyq, NOTCH_Q)
 
 # ============================================================
@@ -75,7 +86,6 @@ plot.setLabel('bottom', 'Time', 's')
 
 curve = plot.plot(pen=pg.mkPen(color='g', width=2))
 
-
 t = np.linspace(-WINDOW_SEC, 0, N)
 
 # ============================================================
@@ -85,9 +95,6 @@ t = np.linspace(-WINDOW_SEC, 0, N)
 def update():
     global buffer, curve, t
 
-    # --------------------------------------------------------
-    # Read all available UDP packets (non-blocking)
-    # --------------------------------------------------------
     try:
         while True:
             data, addr = sock.recvfrom(1024)
@@ -95,10 +102,14 @@ def update():
 
             try:
                 v = float(text)
-                # print("got:", v)   # uncomment for debugging
             except ValueError:
                 continue
 
+            # Write to CSV
+            csv_writer.writerow([time.time(), v])
+            csv_file.flush()
+
+            # Update buffer
             buffer = np.roll(buffer, -1)
             buffer[-1] = v
 
@@ -106,22 +117,21 @@ def update():
         pass
 
     # --------------------------------------------------------
-    # DIGITAL FILTERING
+    # FILTERING PIPELINE
     # --------------------------------------------------------
-    # 1) remove DC offset
+
     x = buffer - np.mean(buffer)
 
-    if np.any(x):  # avoid filtering all zeros at startup
-        # 2) band-pass 0.5–25 Hz
+    if np.any(x):
+        # Band-pass
         x_filt = filtfilt(b_bp, a_bp, x)
 
-        # 3) 60 Hz notch
+        # Notch
         x_filt = filtfilt(b_notch, a_notch, x_filt)
 
-        # 4) light smoothing
-        # ensure window length is not larger than the signal
+        # Smoothing
         win_len = min(SAVGOL_WINDOW, len(x_filt) - (1 - len(x_filt) % 2))
-        if win_len < 3:   # fallback if buffer is too short
+        if win_len < 3:
             x_smooth = x_filt
         else:
             if win_len % 2 == 0:
@@ -131,21 +141,19 @@ def update():
     else:
         x_smooth = x
 
-    # --------------------------------------------------------
-    # Update plot with FILTERED data
-    # --------------------------------------------------------
+    # Update plot
     curve.setData(t, x_smooth)
 
 # ============================================================
-#           5. SET UP QT TIMER TO CALL update()
+#           5. START QT TIMER
 # ============================================================
 
 timer = QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(1000)          # update every 10 ms
+timer.start(10)     # update every 10 ms
 
 # ============================================================
-#           6. START APPLICATION EVENT LOOP
+#           6. START APPLICATION
 # ============================================================
 
 print("Ready to receive ECG data over UDP port", UDP_PORT)
