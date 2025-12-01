@@ -3,6 +3,7 @@ import numpy as np
 import pyqtgraph as pg
 from PyQt5 import QtWidgets, QtCore
 from scipy.signal import butter, filtfilt, iirnotch, savgol_filter
+import csv
 
 # ============================================================
 #               USER PARAMETERS
@@ -30,6 +31,9 @@ SAVGOL_ORDER  = 3
 JUMP_THRESH   = 150.0  # mV, max allowed change between samples
 AMP_THRESH    = 350.0  # mV, max deviation from median to keep
 
+# CSV logging
+LOG_FILENAME = "ecg_log.csv"
+
 # ============================================================
 #                  1. SET UP UDP SOCKET
 # ============================================================
@@ -40,12 +44,23 @@ sock.setblocking(False)
 sock.sendto(b"send\n", (BEAGLE_IP, UDP_PORT))
 
 # ============================================================
+#                  1a. SET UP CSV LOGGING
+# ============================================================
+
+csv_file = open(LOG_FILENAME, "w", newline="")
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(["sample_index", "time_s", "voltage_mV"])
+
+sample_index = 0  # global sample counter
+
+# ============================================================
 #                  2. SET UP DATA BUFFER
 # ============================================================
 
 buffer = np.zeros(N, dtype=float)
 
 print(">>> Running ECG plot script with filters + certainty masking (tuned)")
+print(f">>> Logging raw samples to {LOG_FILENAME}")
 
 # ============================================================
 #                  2a. DESIGN FILTERS
@@ -89,10 +104,10 @@ t = np.linspace(-WINDOW_SEC, 0, N)
 # ============================================================
 
 def update():
-    global buffer, curve, t
+    global buffer, curve, t, sample_index
 
     # --------------------------------------------------------
-    # Read all available UDP packets (non-blocking)
+       # Read all available UDP packets (non-blocking)
     # --------------------------------------------------------
     try:
         while True:
@@ -105,6 +120,16 @@ def update():
             except ValueError:
                 continue
 
+            # ---- LOG TO CSV (raw value) ----
+            time_s = sample_index / FS
+            csv_writer.writerow([sample_index, time_s, v])
+            sample_index += 1
+
+            # Occasionally flush to disk
+            if sample_index % 100 == 0:
+                csv_file.flush()
+
+            # ---- Update circular buffer for plotting ----
             buffer = np.roll(buffer, -1)
             buffer[-1] = v
 
@@ -167,7 +192,24 @@ timer.timeout.connect(update)
 timer.start(10)          # update every 10 ms
 
 # ============================================================
-#           6. START APPLICATION EVENT LOOP
+#           6. CLEANUP ON EXIT
+# ============================================================
+
+def on_exit():
+    try:
+        sock.close()
+    except Exception:
+        pass
+    try:
+        csv_file.flush()
+        csv_file.close()
+    except Exception:
+        pass
+
+app.aboutToQuit.connect(on_exit)
+
+# ============================================================
+#           7. START APPLICATION EVENT LOOP
 # ============================================================
 
 print("Ready to receive ECG data over UDP port", UDP_PORT)

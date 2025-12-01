@@ -51,10 +51,12 @@ void* sampler(void* arg){
 
     while(atomic_load(running_adc) == true){
         int ch1 = read_ch(fd,1,speed);
-         if (ch1>= 0) {
+        printf("%d\n",ch1);
+            //     printf("%d\n",ch1);
             float v = (ch1/ 4095.0f) * 3.3f;
+            //printf("%f\n",v);
             udp_send_sample(v);    // *** THIS STREAMS THE SAMPLE ***
-        }
+        
 
         usleep(Ts);
 
