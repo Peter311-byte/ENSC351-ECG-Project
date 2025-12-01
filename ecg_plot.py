@@ -9,7 +9,7 @@ import csv
 #               USER PARAMETERS
 # ============================================================
 UDP_PORT = 12345
-FS = 500               # sampling rate from Beagle
+FS = 500              # sampling rate from Beagle
 WINDOW_SEC = 5         # how many seconds to display
 N = FS * WINDOW_SEC    # total buffer size
 

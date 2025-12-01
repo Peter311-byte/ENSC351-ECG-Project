@@ -46,7 +46,7 @@ return ((rx[1] & 0x0F) << 8) | rx[2];
 
 void* sampler(void* arg){
 
-    const double Fs = 500.0;  // sampling frequency
+    const double Fs = 2000.0;  // sampling frequency
     const useconds_t Ts = (useconds_t)(1e6 / Fs);
 
     while(atomic_load(running_adc) == true){

@@ -5,130 +5,125 @@ from PyQt5 import QtWidgets, QtCore
 from scipy.signal import butter, filtfilt, iirnotch, savgol_filter,find_peaks
 
 # ============================================================
-# 1. PARAMETERS
+# 1. PARAMETERS (MODIFIED FOR 10-SECOND WINDOW)
 # ============================================================
 UDP_PORT = 12345
-FS = 500
-WINDOW_SEC = 5
-N = FS*WINDOW_SEC
 BEAGLE_IP = "192.168.7.2"
 
-# --- Filter and Peak Params ---
-NOTCH_F0 = 60.0    # Notch frequency (Hz)
-NOTCH_Q = 35.0     # Quality factor
-MIN_PEAK_HEIGHT = 0.6 # Height threshold for R-peak detection
-MIN_DISTANCE_S = 0.25 # Min time between peaks (for max 240 BPM)
+# FIX: Set FS to the actual data streaming rate (2000 Hz)
+FS = 500.0                     
+RAW_FS = 500.0                  
+
+WINDOW_SEC = 10 # <-- INCREASED: Now shows 10 seconds of data
+N = int(FS * WINDOW_SEC)    # N is now 20000
+
+# Filters & peak params (now designed for 2000 Hz)
+NOTCH_F0 = 60.0
+NOTCH_Q = 35.0
+MIN_PEAK_HEIGHT = 0.1     
+MIN_DISTANCE_S = 0.25     
 MIN_DISTANCE_SAMPLES = int(MIN_DISTANCE_S * FS)
 
-# --- Heart Rate Variables (Persistent State) ---
+# State
+buffer = np.zeros(N, dtype=float)
+SAMPLE_COUNTER = 0          
+SAMPLE_COUNT = 0            
 LAST_PEAK_TIME = 0.0
 CURRENT_BPM = 0.0
-PEAK_HISTORY = np.zeros(10) # Used for potential averaging (not fully implemented here)
-
 
 # ============================================================
-# 2. SETUP: Socket, Buffer, and GUI
+# SOCKET, GUI, PLOT SETUP (N is updated here)
 # ============================================================
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(("0.0.0.0", UDP_PORT))
 sock.setblocking(False)
-sock.sendto(b"send\n", (BEAGLE_IP, UDP_PORT))
+# Ask the Beagle to send (if your firmware expects it)
+try:
+    sock.sendto(b"send\n", (BEAGLE_IP, UDP_PORT))
+except Exception:
+    pass
 
-buffer = np.zeros(N,dtype=float)
 app = QtWidgets.QApplication([])
-
-# Setup Plot Window with two rows: BPM label and ECG plot
-win = pg.GraphicsLayoutWidget(title="Live ECG Plot")
-win.resize(800, 400)
+win = pg.GraphicsLayoutWidget(title="Live ECG Plot @2000Hz")
+win.resize(1000, 500)
 win.show()
 
-# Row 1: BPM Display Label
 win.nextRow()
 bpm_label = pg.LabelItem(justify='center')
 win.addItem(bpm_label)
 bpm_label.setText(f"<span style='color: white; font-size: 20pt;'>BPM: {CURRENT_BPM:.1f}</span>")
 
-# Row 2: ECG Plot
 plot = win.addPlot()
-plot.setLabel('left', 'Voltage', 'mV')
+plot.setLabel('left', 'Voltage', 'V')
 plot.setLabel('bottom', 'Time', 's')
+curve = plot.plot(pen=pg.mkPen('g', width=1.2))
 
-curve = plot.plot(
-    pen = pg.mkPen('g',width = 1.5),
-    symbol = None,
-)
-
-t = np.linspace(-WINDOW_SEC, 0, N)
-
+# Time vector for plotting: -WINDOW_SEC .. 0
+t = np.linspace(-WINDOW_SEC, 0, N) # <-- T updated with new N
 
 # ============================================================
-# 3. FILTER DESIGN
+# FILTER DESIGN (using the new FS=2000)
 # ============================================================
-low_cutoff_frequency = 0.5 
-high_cutoff_frequency = 15.0 
+low_cutoff_frequency = 0.5
+high_cutoff_frequency = 15.0
 order = 4
 nyquist_frequency = 0.5 * FS
-
 normalized_low = low_cutoff_frequency / nyquist_frequency
 normalized_high = high_cutoff_frequency / nyquist_frequency
+b, a = butter(order, [normalized_low, normalized_high], btype='band')
 
-# Bandpass Filter Coefficients
-b, a = butter(order, [normalized_low, normalized_high], btype='band') 
-
-# Notch Filter Coefficients
 b_notch, a_notch = iirnotch(NOTCH_F0 / nyquist_frequency, NOTCH_Q)
 
-
 # ============================================================
-# 4. UPDATE FUNCTION (ECG and BPM Calculation)
+# UPDATE LOOP (recv raw samples, filter, detect)
 # ============================================================
-
 def update():
-    # FIXED: Added bpm_label to global list as it is modified
-    global buffer, b, a, curve, t, order, b_notch, a_notch, LAST_PEAK_TIME, CURRENT_BPM, PEAK_HISTORY, MIN_PEAK_HEIGHT, MIN_DISTANCE_SAMPLES, bpm_label
+    # Declare all global variables used/modified
+    global buffer, b, a, curve, t, LAST_PEAK_TIME, CURRENT_BPM, SAMPLE_COUNT, SAMPLE_COUNTER, N, MIN_PEAK_HEIGHT, MIN_DISTANCE_SAMPLES, bpm_label
     
-    newDataRecieved = False 
-    # current_time_s is 0.0, representing the latest point in the buffer
-    current_time_s = t[-1] 
-    
-    # ------------------------------------------------------------------
-    # A. RECEIVE DATA AND UPDATE BUFFER
-    # ------------------------------------------------------------------
+    newDataReceived = False
+
+    # A) Receive as many UDP samples as available
     try:
         while True:
             data, addr = sock.recvfrom(1024)
             text = data.decode().strip()
-            
             try:
-                voltage = float(text)
+                raw_v = float(text)    # expect C to send the voltage (e.g., 0.0..3.3)
             except ValueError:
                 continue
 
-            buffer = np.roll(buffer,-1)
-            buffer[-1] = voltage
-            newDataRecieved = True
+            SAMPLE_COUNT += 1
+            # push into circular buffer: oldest at index 0, newest at -1
+            buffer = np.roll(buffer, -1)
+            buffer[-1] = raw_v
+
+            SAMPLE_COUNTER += 1
+            newDataReceived = True
 
     except BlockingIOError:
+        # no more UDP data now
         pass
-    
-    # ------------------------------------------------------------------
-    # B. PROCESS, CALCULATE, AND PLOT
-    # ------------------------------------------------------------------
-    if newDataRecieved:
-        
-        # 1. Remove DC offset
-        voltage_dc_removed = buffer - np.mean(buffer)
 
-        # 2. Filtering Pipeline
-        if len(buffer) > 2 * order + 1:
-            # Bandpass Filter
+    # B) Nothing new -> don't process
+    if not newDataReceived:
+        return
+
+    # Remove DC offset (on the buffer)
+    voltage_dc_removed = buffer - np.mean(buffer)
+    voltage_filtered = voltage_dc_removed.copy()
+
+    # Only apply filtfilt after we have a full buffer (Stabilization)
+    if SAMPLE_COUNTER >= N:
+        try:
             x_filtered_bp = filtfilt(b, a, voltage_dc_removed)
-            # Notch Filter
             voltage_filtered = filtfilt(b_notch, a_notch, x_filtered_bp)
-        else:
-            voltage_filtered = voltage_dc_removed 
-            
-        # 3. Peak Detection for BPM Calculation
+        except Exception as e:
+            # filtfilt can fail if something odd happens; keep DC-removed signal
+            # print("Filtering error:", e) # Uncomment for debugging filter instability
+            voltage_filtered = voltage_dc_removed.copy()
+
+        # Peak detection on filtered signal
         peaks, properties = find_peaks(
             voltage_filtered,
             height=MIN_PEAK_HEIGHT,
@@ -136,38 +131,39 @@ def update():
         )
 
         if len(peaks) > 0:
-            last_peak_index = peaks[-1]
-            
-            # t[index] gives the time relative to the window (e.g., -1.2s)
-            peak_time_in_window = t[last_peak_index] 
-            time_of_latest_peak = current_time_s + peak_time_in_window
-            
-            # Check if a new, unique peak was found (time must be greater than last recorded time)
+            last_peak_index = peaks[-1]  # index into buffer [0..N-1]
+
+            # convert buffer index to absolute sample index:
+            absolute_index = SAMPLE_COUNT - (N - last_peak_index)
+            time_of_latest_peak = absolute_index / float(FS)  # seconds since program start
+
+            # accept only if newer than last
             if time_of_latest_peak > LAST_PEAK_TIME:
-                
-                rr_interval_s = time_of_latest_peak - LAST_PEAK_TIME
-                
-                # Validation: Check for a realistic RR interval (30 BPM to 240 BPM)
-                if rr_interval_s > 0.25 and rr_interval_s < 2.0:
-                    
-                    CURRENT_BPM = 60.0 / rr_interval_s
+                if LAST_PEAK_TIME == 0.0:
+                    # seed baseline time
                     LAST_PEAK_TIME = time_of_latest_peak
-                    
-                    # Update the BPM display
-                    bpm_label.setText(
-                        f"<span style='color: #FF69B4; font-size: 30pt; font-weight: bold;'>BPM: {CURRENT_BPM:.1f}</span>"
-                    )
+                else:
+                    rr_interval_s = time_of_latest_peak - LAST_PEAK_TIME
+                    # sanity check for RR interval (tunable)
+                    if 0.12 < rr_interval_s < 3.0:    # allow up to 500 BPM lower bound ~0.12s
+                        CURRENT_BPM = 60.0 / rr_interval_s
+                        LAST_PEAK_TIME = time_of_latest_peak
+                        bpm_label.setText(
+                            f"<span style='color: #FF69B4; font-size: 30pt; font-weight: bold;'>BPM: {CURRENT_BPM:.1f}</span>"
+                        )
+                    else:
+                        # unrealistic interval, update to avoid stuck comparisons
+                        LAST_PEAK_TIME = time_of_latest_peak
 
-        # 4. Update the PyQTGraph plot
-        curve.setData(t,voltage_filtered)
-
+    # Update plot (plot the filtered signal if available)
+    curve.setData(t, voltage_filtered)
 
 # ============================================================
-# 5. TIMER SETUP and EXECUTION
+# TIMER START
 # ============================================================
 timer = QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(10) # Update every 10 milliseconds
+timer.start(5)    # poll frequently to collect UDP packets
 
-print(f"Listening for ECG data on UDP port {UDP_PORT}. Plotting {WINDOW_SEC} seconds at {FS} Hz.")
+print(f"Listening for ECG data on UDP port {UDP_PORT}. Processing at {FS} Hz.")
 app.exec_()
